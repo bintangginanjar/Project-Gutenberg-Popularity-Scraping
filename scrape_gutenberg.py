@@ -8,7 +8,10 @@ import pandas as pd
 firefoxOptions = Options()
 firefoxOptions.add_argument('-headless')
 
-browser = webdriver.Firefox(executable_path='/opt/firefox/geckodriver/geckodriver', options=firefoxOptions)
+# make sure you set webDriverPath to the path where you put a geckodriver
+webDriverPath = '/opt/firefox/geckodriver/geckodriver'
+
+browser = webdriver.Firefox(executable_path=webDriverPath, options=firefoxOptions)
 browser.get('http://www.gutenberg.org/ebooks/search/?sort_order=downloads')
 
 print('Title: %s' % browser.title)
