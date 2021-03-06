@@ -24,44 +24,44 @@ numOfDownloadList = []
 
 while True:
 
-	books = browser.find_elements_by_class_name('booklink')
+    books = browser.find_elements_by_class_name('booklink')
 
-	for book in books:
-		try:
-			name = book.find_elements_by_class_name('title')[0].text
-			try:
-				author = book.find_elements_by_class_name('subtitle')[0].text
-			except:
-				author: 'Not available'
+    for book in books:
+        try:
+            name = book.find_elements_by_class_name('title')[0].text
+            try:
+                author = book.find_elements_by_class_name('subtitle')[0].text
+            except:
+                author: 'Not available'
 
-			try:
-				numOfDownload = book.find_elements_by_class_name('extra')[0].text
-			except:
-				numOfDownload: 'Not available'
-			
-			print('------------')
-			print('Number: ', i)
-			print('Name: ', name)
-			print('Author: ', author)
-			print('Download: ', numOfDownload)			
+            try:
+                numOfDownload = book.find_elements_by_class_name('extra')[0].text
+            except:
+                numOfDownload: 'Not available'
 
-			nameList.append(name)
-			authorList.append(author)
-			numOfDownloadList.append(numOfDownload)
-			#res[i] = [name, author, numOfDownload]
-		except:
-			pass
+            print('------------')
+            print('Number: ', i)
+            print('Name: ', name)
+            print('Author: ', author)
+            print('Download: ', numOfDownload)
 
-		i = i + 1
+            nameList.append(name)
+            authorList.append(author)
+            numOfDownloadList.append(numOfDownload)
+            #res[i] = [name, author, numOfDownload]
+        except:
+            pass
 
-	navButton = browser.find_elements_by_class_name('statusline')[0].find_elements_by_tag_name('a')
+        i = i + 1
 
-	if len(navButton) == 2:
-		break
-	else:
-		navButton[-1].click()
+    navButton = browser.find_elements_by_class_name('statusline')[0].find_elements_by_tag_name('a')
 
-	#print(len(navButton))
+    if len(navButton) == 2:
+        break
+    else:
+        navButton[-1].click()
+
+    # print(len(navButton))
 
 browser.quit()
 
@@ -70,5 +70,7 @@ res['bookAuthor'] = authorList
 res['download'] = numOfDownloadList
 
 df = pd.DataFrame(res)
-#print(df)
+# print(df)
 df.to_csv('gutenberg_most_popular_book.csv')
+
+# uploaded to github
